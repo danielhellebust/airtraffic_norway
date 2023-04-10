@@ -29,7 +29,7 @@ app.layout = html.Div([
             value=None,
             placeholder='Select a start date. Year-Month. Default 2009-01',
             clearable=True
-        )], width=2),
+        )], width=3),
         dbc.Col([
             html.H6('End date'),
             dcc.Dropdown(
@@ -39,7 +39,7 @@ app.layout = html.Div([
             placeholder='Select an end date. Year-Month. Default 2023-02.',
             clearable=True
 
-        )], width=2),
+        )], width=3),
         dbc.Col([
             html.H6('Airport(s)'),
             dcc.Dropdown(
@@ -50,7 +50,7 @@ app.layout = html.Div([
             multi=True,
             clearable=True
 
-        )], width=6),
+        )], width=3),
     ], justify="center"),
         dbc.Col([
             dbc.Row([
@@ -127,10 +127,10 @@ def update_graph(start_date,end_date,airport):
         # add padding to fig1
         fig.update_layout(
             margin=dict(
-                l=100,
+                l=10,
                 r=0,
                 b=0,
-                t=50,
+                t=10,
             ),
         )
 
@@ -138,9 +138,9 @@ def update_graph(start_date,end_date,airport):
         fig2.update_layout(
             margin=dict(
                 l=0,
-                r=50,
+                r=10,
                 b=0,
-                t=50,
+                t=10,
             ),
         )
 
@@ -151,7 +151,7 @@ def update_graph(start_date,end_date,airport):
             title_y=0.99,
             title_font_family="Arial",
             title_font_color="black",
-            title_font_size=30,
+            title_font_size=18,
             legend=dict(
                 itemclick=False,
                 itemdoubleclick=False,)
@@ -162,7 +162,7 @@ def update_graph(start_date,end_date,airport):
             title_y=0.99,
             title_font_family="Arial",
             title_font_color="black",
-            title_font_size=30,
+            title_font_size=18,
             legend=dict(
                 itemclick=False,
                 itemdoubleclick=False, )
@@ -173,7 +173,7 @@ def update_graph(start_date,end_date,airport):
             title_y=0.99,
             title_font_family="Arial",
             title_font_color="black",
-            title_font_size=30,
+            title_font_size=18,
         ),
 
 
@@ -210,10 +210,10 @@ def update_graph(start_date,end_date,airport):
         # add padding to fig1
         fig.update_layout(
             margin=dict(
-                l=100,
+                l=10,
                 r=0,
                 b=0,
-                t=50,
+                t=10,
             ),
         )
 
@@ -221,9 +221,9 @@ def update_graph(start_date,end_date,airport):
         fig2.update_layout(
             margin=dict(
                 l=0,
-                r=50,
+                r=10,
                 b=0,
-                t=50,
+                t=10,
             ),
         )
 
@@ -234,7 +234,7 @@ def update_graph(start_date,end_date,airport):
             title_y=0.99,
             title_font_family="Arial",
             title_font_color="black",
-            title_font_size=30,
+            title_font_size=18,
             legend=dict(
                 itemclick=False,
                 itemdoubleclick=False, )
@@ -245,7 +245,7 @@ def update_graph(start_date,end_date,airport):
             title_y=0.99,
             title_font_family="Arial",
             title_font_color="black",
-            title_font_size=30,
+            title_font_size=18,
             legend=dict(
                 itemclick=False,
                 itemdoubleclick=False, )
@@ -256,7 +256,7 @@ def update_graph(start_date,end_date,airport):
             title_y=0.99,
             title_font_family="Arial",
             title_font_color="black",
-            title_font_size=30,
+            title_font_size=18,
         ),
 
 
