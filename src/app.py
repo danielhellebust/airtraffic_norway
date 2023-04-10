@@ -102,18 +102,18 @@ def update_graph(start_date,end_date,airport):
         df_new2.sort_values(by=['Date','passengers'], inplace=True, ascending=False)
 
         fig = px.scatter_mapbox(df_new, lat="lat", lon="lon", hover_name="Airport",size="passengers",hover_data=["passengers"], zoom=4,
-                                height=1130,width=1200, size_max=80, color_discrete_map={"passengers": "red"},
+                                height=800,width=600, size_max=80, color_discrete_map={"passengers": "red"},
                                  color="Airport")
         fig.update_layout(mapbox_style="open-street-map")
         fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
         fig2 = px.scatter(df_new2, x="Date", y="passengers", color="Airport", hover_name="Airport", hover_data=["passengers"],
-                          color_discrete_map={"passengers": "red"}, height=1000)
+                          color_discrete_map={"passengers": "red"}, height=600)
 
         fig2.update_traces(mode='markers+lines')
 
         fig3 = px.bar(df_new, x="passengers", y="Airport", hover_name="Airport", hover_data=["passengers"],color="Airport", color_discrete_map={"passengers": "red"}, orientation='h',
-                      height=1200)
+                      height=800)
 
         # fig3 =px.sunburst(df_new_sunburst, path=['Airport','year','month_name'], values='passengers', color='Airport', color_discrete_map={"passengers": "red"}, height=1200, width=1200)
         # fig3.update_traces(maxdepth=2)
@@ -187,7 +187,7 @@ def update_graph(start_date,end_date,airport):
         df_new = df_new[df_new['Airport'].isin(airport)]
         df_new2 = df_new2[df_new2['Airport'].isin(airport)]
         fig = px.scatter_mapbox(df_new, lat="lat", lon="lon", hover_name="Airport",size="passengers",hover_data=["passengers"], zoom=4,size_max=80,
-                                height=1200, color_discrete_map={"passengers": "red"},
+                                height=800, color_discrete_map={"passengers": "red"},
                                  color="Airport")
         fig.update_layout(mapbox_style="open-street-map")
         fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
@@ -201,7 +201,7 @@ def update_graph(start_date,end_date,airport):
 
         fig3 = px.bar(df_new, x="passengers", y="Airport", hover_name="Airport", hover_data=["passengers"],
                       color="Airport", color_discrete_map={"passengers": "red"}, orientation='h',
-                      height=1200)
+                      height=800)
         fig3.update_traces(width=0.05)
 
         # hide legend for fig3
