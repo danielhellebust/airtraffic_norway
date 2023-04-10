@@ -17,7 +17,7 @@ server = app.server
 
 app.layout = html.Div([
     dbc.Row([
-        dbc.Col(html.H1('Total passengers on board at departure and arrival at selected airports. All commercial flights. Domestic and international flights. '),
+        dbc.Col(html.H3('Total passengers on board at departure and arrival at selected airports. All commercial flights. Domestic and international flights. '),
                 style={'textAlign': 'center', 'color': 'black', 'font-size': '50px', 'font-weight': 'bold', 'font-family': 'Arial', 'margin-top': '20px'}),
     ], justify="center"),
     dbc.Row([
@@ -29,7 +29,7 @@ app.layout = html.Div([
             value=None,
             placeholder='Select a start date. Year-Month. Default 2009-01',
             clearable=True
-        )], width=3),
+        )], width=2),
         dbc.Col([
             html.H6('End date'),
             dcc.Dropdown(
@@ -39,7 +39,7 @@ app.layout = html.Div([
             placeholder='Select an end date. Year-Month. Default 2023-02.',
             clearable=True
 
-        )], width=3),
+        )], width=2),
         dbc.Col([
             html.H6('Airport(s)'),
             dcc.Dropdown(
@@ -50,7 +50,7 @@ app.layout = html.Div([
             multi=True,
             clearable=True
 
-        )], width=3),
+        )], width=6),
     ], justify="center"),
         dbc.Col([
             dbc.Row([
@@ -102,7 +102,7 @@ def update_graph(start_date,end_date,airport):
         df_new2.sort_values(by=['Date','passengers'], inplace=True, ascending=False)
 
         fig = px.scatter_mapbox(df_new, lat="lat", lon="lon", hover_name="Airport",size="passengers",hover_data=["passengers"], zoom=4,
-                                height=800,width=600, size_max=80, color_discrete_map={"passengers": "red"},
+                                height=1000,width=1000, size_max=80, color_discrete_map={"passengers": "red"},
                                  color="Airport")
         fig.update_layout(mapbox_style="open-street-map")
         fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
@@ -113,7 +113,7 @@ def update_graph(start_date,end_date,airport):
         fig2.update_traces(mode='markers+lines')
 
         fig3 = px.bar(df_new, x="passengers", y="Airport", hover_name="Airport", hover_data=["passengers"],color="Airport", color_discrete_map={"passengers": "red"}, orientation='h',
-                      height=800)
+                      height=1200)
 
         # fig3 =px.sunburst(df_new_sunburst, path=['Airport','year','month_name'], values='passengers', color='Airport', color_discrete_map={"passengers": "red"}, height=1200, width=1200)
         # fig3.update_traces(maxdepth=2)
@@ -127,10 +127,10 @@ def update_graph(start_date,end_date,airport):
         # add padding to fig1
         fig.update_layout(
             margin=dict(
-                l=10,
+                l=100,
                 r=0,
                 b=0,
-                t=10,
+                t=50,
             ),
         )
 
@@ -138,9 +138,9 @@ def update_graph(start_date,end_date,airport):
         fig2.update_layout(
             margin=dict(
                 l=0,
-                r=10,
+                r=50,
                 b=0,
-                t=10,
+                t=50,
             ),
         )
 
@@ -210,10 +210,10 @@ def update_graph(start_date,end_date,airport):
         # add padding to fig1
         fig.update_layout(
             margin=dict(
-                l=10,
+                l=100,
                 r=0,
                 b=0,
-                t=10,
+                t=50,
             ),
         )
 
@@ -221,9 +221,9 @@ def update_graph(start_date,end_date,airport):
         fig2.update_layout(
             margin=dict(
                 l=0,
-                r=10,
+                r=50,
                 b=0,
-                t=10,
+                t=50,
             ),
         )
 
