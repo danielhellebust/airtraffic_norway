@@ -19,6 +19,15 @@ app.layout = html.Div([
     dbc.Row([
         dbc.Col(html.H3('Total passengers on board at departure and arrival at selected airports'),
                 style={'textAlign': 'center', 'color': 'black', 'font-size': '50px', 'font-weight': 'bold', 'font-family': 'Arial', 'margin-top': '20px'}),
+        dbc.Col(dbc.Alert("The end date must be after the start date. End date is set to start date.",
+                        id='alert',
+                        color="danger",
+                        dismissable=True,
+                        is_open=False,
+                        duration=10000,
+                        style={'textAlign': 'center', 'color': 'black', 'font-size': '20px', 'font-weight': 'bold',
+                                 'font-family': 'Arial', 'margin-top': '20px'}
+                          ),width=4),
     ], justify="center"),
     dbc.Row([
         dbc.Col([
@@ -72,7 +81,9 @@ app.layout = html.Div([
 @app.callback(
     [Output('airport-graph', 'figure'),
      Output('airport-graph2', 'figure'),
-     Output('airport-graph3', 'figure')],
+     Output('airport-graph3', 'figure'),
+     Output('alert', 'is_open'),
+     Output('date-dropdown_end', 'value')],
     [
         Input('date-dropdown_start', 'value'),
         Input('date-dropdown_end', 'value'),
@@ -86,6 +97,11 @@ def update_graph(start_date,end_date,airport):
 
     if end_date == None:
         end_date = '2023-02'
+
+    alert = False
+    if end_date < start_date:
+        alert = True
+        end_date = start_date
 
     if airport == None or airport == []:
         df_new = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
@@ -177,7 +193,9 @@ def update_graph(start_date,end_date,airport):
         ),
 
 
-        return fig, fig2,fig3
+        return fig, fig2, fig3, alert, end_date
+
+
     else:
         df_new = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
         df_new2 = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
@@ -260,7 +278,8 @@ def update_graph(start_date,end_date,airport):
         ),
 
 
-        return fig, fig2, fig3
+        return fig, fig2, fig3, alert, end_date
+
 
 
 if __name__ == '__main__':
